@@ -1,0 +1,6 @@
+@VlogCMS.Api_HostAddress = http://localhost:5287
+
+GET {{VlogCMS.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
