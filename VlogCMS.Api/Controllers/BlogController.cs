@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
 
@@ -7,16 +6,16 @@ namespace VlogCMS.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CategoryController(CategoryService categoryService) : BaseController
+public class BlogController(BlogService blogService) : Controller
 {
-    private readonly CategoryService _categoryService = categoryService;
+    private readonly BlogService _blogService = blogService;
 
     [HttpGet]
-    public async Task<IEnumerable<Category>> Index()
+    public async Task<IEnumerable<Blog>> Index()
     {
         try
         {
-            return await _categoryService.GetAllAsync();
+            return await _blogService.GetAllAsync();
         }
         catch
         {
@@ -25,11 +24,11 @@ public class CategoryController(CategoryService categoryService) : BaseControlle
     }
 
     [HttpGet("{id}")]
-    public async Task<Category?> Get(int id)
+    public async Task<Blog?> Get(int id)
     {
         try
         {
-            return await _categoryService.GetByIdAsync(id);
+            return await _blogService.GetByIdAsync(id);
         }
         catch
         {
@@ -38,11 +37,11 @@ public class CategoryController(CategoryService categoryService) : BaseControlle
     }
 
     [HttpPost("Create")]
-    public async Task<IActionResult> Create([FromBody] Category entity)
+    public async Task<IActionResult> Create([FromBody] Blog entity)
     {
         try
         {
-            await _categoryService.UpsertAsync(entity);
+            await _blogService.UpsertAsync(entity);
             return Ok();
         }
         catch
@@ -56,7 +55,7 @@ public class CategoryController(CategoryService categoryService) : BaseControlle
     {
         try
         {
-            await _categoryService.RemoveByIdAsync(id);
+            await _blogService.RemoveByIdAsync(id);
             return Ok();
         }
         catch

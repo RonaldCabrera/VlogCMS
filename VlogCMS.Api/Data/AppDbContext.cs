@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Xml.Linq;
 using VlogCMS.Api.Models;
 
 namespace VlogCMS.Api.Data
@@ -11,6 +10,7 @@ namespace VlogCMS.Api.Data
 
         public DbSet<Category> Categories {  get; set; } 
         public DbSet<State> States {  get; set; } 
+        public DbSet<Page> Pages {  get; set; } 
         public DbSet<Blog> Blogs {  get; set; } 
         public DbSet<Comment> Comments {  get; set; } 
         public DbSet<Image> Images {  get; set; } 

@@ -17,6 +17,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<StateService>();
+builder.Services.AddScoped<PageService>();
+builder.Services.AddScoped<BlogService>();
+builder.Services.AddScoped<CommentService>();
 
 //builder.Services.AddDbContext<AuthDbContext>(options =>
 //{

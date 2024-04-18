@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
 
@@ -7,16 +6,16 @@ namespace VlogCMS.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CategoryController(CategoryService categoryService) : BaseController
+public class CommentController(CommentService commentService) : BaseController
 {
-    private readonly CategoryService _categoryService = categoryService;
+    private readonly CommentService _commentService = commentService;
 
     [HttpGet]
-    public async Task<IEnumerable<Category>> Index()
+    public async Task<IEnumerable<Comment>> Index()
     {
         try
         {
-            return await _categoryService.GetAllAsync();
+            return await _commentService.GetAllAsync();
         }
         catch
         {
@@ -25,11 +24,11 @@ public class CategoryController(CategoryService categoryService) : BaseControlle
     }
 
     [HttpGet("{id}")]
-    public async Task<Category?> Get(int id)
+    public async Task<Comment?> Get(int id)
     {
         try
         {
-            return await _categoryService.GetByIdAsync(id);
+            return await _commentService.GetByIdAsync(id);
         }
         catch
         {
@@ -38,11 +37,11 @@ public class CategoryController(CategoryService categoryService) : BaseControlle
     }
 
     [HttpPost("Create")]
-    public async Task<IActionResult> Create([FromBody] Category entity)
+    public async Task<IActionResult> Create([FromBody] Comment entity)
     {
         try
         {
-            await _categoryService.UpsertAsync(entity);
+            await _commentService.UpsertAsync(entity);
             return Ok();
         }
         catch
@@ -52,11 +51,11 @@ public class CategoryController(CategoryService categoryService) : BaseControlle
     }
 
     [HttpPost("Delete/{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Create(int id)
     {
         try
         {
-            await _categoryService.RemoveByIdAsync(id);
+            await _commentService.RemoveByIdAsync(id);
             return Ok();
         }
         catch
