@@ -66,7 +66,7 @@ namespace VlogCMS.Api.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Blogs", (string)null);
                 });
 
             modelBuilder.Entity("VlogCMS.Api.Models.Category", b =>
@@ -83,7 +83,7 @@ namespace VlogCMS.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("VlogCMS.Api.Models.Comment", b =>
@@ -119,7 +119,7 @@ namespace VlogCMS.Api.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("VlogCMS.Api.Models.Image", b =>
@@ -154,7 +154,7 @@ namespace VlogCMS.Api.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Images");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("VlogCMS.Api.Models.Page", b =>
@@ -179,7 +179,7 @@ namespace VlogCMS.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pages");
+                    b.ToTable("Pages", (string)null);
                 });
 
             modelBuilder.Entity("VlogCMS.Api.Models.State", b =>
@@ -196,7 +196,7 @@ namespace VlogCMS.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("States");
+                    b.ToTable("States", (string)null);
                 });
 
             modelBuilder.Entity("VlogCMS.Api.Models.Blog", b =>

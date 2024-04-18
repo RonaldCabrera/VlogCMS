@@ -4,6 +4,7 @@ using VlogCMS.Api.Services;
 
 namespace VlogCMS.Api.Controllers;
 
+// TODO: Add admin role requirement
 [ApiController]
 [Route("api/[controller]")]
 public class StateController(StateService stateService) : BaseController

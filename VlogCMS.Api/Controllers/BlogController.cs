@@ -4,6 +4,8 @@ using VlogCMS.Api.Services;
 
 namespace VlogCMS.Api.Controllers;
 
+// TODO: Add premium role requirement
+// Make them likable without premium role requirement
 [ApiController]
 [Route("api/[controller]")]
 public class BlogController(BlogService blogService) : Controller
@@ -56,6 +58,20 @@ public class BlogController(BlogService blogService) : Controller
         try
         {
             await _blogService.RemoveByIdAsync(id);
+            return Ok();
+        }
+        catch
+        {
+            return BadRequest();
+        }
+    }
+
+    [HttpPost("Like/{id}")]
+    public async Task<IActionResult> Like(int id)
+    {
+        try
+        {
+            await _blogService.LikeByIdAsync(id);
             return Ok();
         }
         catch

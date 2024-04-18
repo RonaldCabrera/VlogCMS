@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace VlogCMS.Api.Models
 {
@@ -26,6 +28,6 @@ namespace VlogCMS.Api.Models
 
         public DateTime? UpdatedDate { get; set; }
 
-        public virtual Blog Blog { get; set; } = null!;
+        public virtual Blog? Blog { get; set; } = null;
     }
 }

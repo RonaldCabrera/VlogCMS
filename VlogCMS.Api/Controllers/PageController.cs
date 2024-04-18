@@ -4,6 +4,7 @@ using VlogCMS.Api.Services;
 
 namespace VlogCMS.Api.Controllers;
 
+// TODO: Add premium role requirement
 [ApiController]
 [Route("api/[controller]")]
 public class PageController(PageService pageService) : BaseController

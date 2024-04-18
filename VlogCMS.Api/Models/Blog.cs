@@ -33,8 +33,8 @@ namespace VlogCMS.Api.Models
         [Required]
         public required int Likes { get; set; }
 
-        public Category Category { get; set; } = null!;
-        public State State { get; set; } = null!;
-        public ICollection<Comment> Comments { get; } = new List<Comment>();
+        public virtual Category? Category { get; set; } = null;
+        public virtual State? State { get; set; } = null;
+        public virtual ICollection<Comment> Comments { get; } = new List<Comment>();
     }
 }

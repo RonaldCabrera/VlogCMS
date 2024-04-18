@@ -4,7 +4,6 @@ namespace VlogCMS.Api.Models
 {
     public class Image
     {
-
         [Key]
         [Required]
         public int Id { get; set; }
@@ -22,6 +21,6 @@ namespace VlogCMS.Api.Models
         [Required]
         public DateTime CreatedDate { get; set; }
 
-        public virtual Blog Blog { get; set; } = null!;
+        public virtual Blog? Blog { get; set; } = null;
     }
 }

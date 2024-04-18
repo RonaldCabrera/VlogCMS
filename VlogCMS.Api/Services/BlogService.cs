@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
 using VlogCMS.Api.Data;
 using VlogCMS.Api.Models;
@@ -34,6 +35,14 @@ namespace VlogCMS.Api.Services
         {
             var entity = await GetByIdAsync(id);
             _dbContext.Remove(entity);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task LikeByIdAsync(int id)
+        {
+            var entity = await GetByIdAsync(id);
+            entity.Likes++;
+            _dbContext.Update(entity);
             await _dbContext.SaveChangesAsync();
         }
 

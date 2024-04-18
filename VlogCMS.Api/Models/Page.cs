@@ -14,6 +14,6 @@ namespace VlogCMS.Api.Models
 
         public required string AuthorId { get; set; }
 
-        public ICollection<Blog> Blogs { get; } = new List<Blog>();
+        public virtual ICollection<Blog> Blogs { get; } = new List<Blog>();
     }
 }
