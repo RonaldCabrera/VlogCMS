@@ -2,13 +2,7 @@
 
 namespace VlogCMS.Api.Models.Dtos;
 
-public record ImageDto
+public record ImageDto(int BlogId, string Name, string? Description, IFormFile? Picture)
 {
-    [Required]
-    public required int BlogId { get; set; }
 
-    [Required]
-    public required string Name { get; set; }
-    public string? Description { get; set; }
-    public IFormFile? Picture { get; set; }
 }
