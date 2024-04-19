@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
@@ -9,7 +10,9 @@ namespace VlogCMS.Api.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class StateController(StateService stateService) : BaseController
+public class StateController(
+    StateService stateService,
+    UserManager<IdentityUser> userManager) : BaseController(userManager)
 {
     private readonly StateService _stateService = stateService;
 

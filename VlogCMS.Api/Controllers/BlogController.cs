@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
@@ -9,7 +10,9 @@ namespace VlogCMS.Api.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class BlogController(BlogService blogService) : Controller
+public class BlogController(
+    BlogService blogService,
+    UserManager<IdentityUser> userManager) : BaseController(userManager)
 {
     private readonly BlogService _blogService = blogService;
 
@@ -45,6 +48,7 @@ public class BlogController(BlogService blogService) : Controller
     {
         try
         {
+            entity.AuthorId = CurrentUserId;
             await _blogService.UpsertAsync(entity);
             return Ok();
         }

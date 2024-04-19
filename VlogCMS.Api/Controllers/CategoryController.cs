@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
@@ -7,7 +8,9 @@ namespace VlogCMS.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CategoryController(CategoryService categoryService) : BaseController
+public class CategoryController(
+    CategoryService categoryService,
+    UserManager<IdentityUser> userManager) : BaseController(userManager)
 {
     private readonly CategoryService _categoryService = categoryService;
 

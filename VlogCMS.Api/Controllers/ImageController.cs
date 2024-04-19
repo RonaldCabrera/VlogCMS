@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Models.Dtos;
@@ -10,7 +11,9 @@ namespace VlogCMS.Api.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class ImageController(ImageService imageService) : BaseController
+public class ImageController(
+    ImageService imageService,
+    UserManager<IdentityUser> userManager) : BaseController(userManager)
 {
     private readonly ImageService _imageService = imageService;
 
@@ -48,7 +51,7 @@ public class ImageController(ImageService imageService) : BaseController
         {
             var modelEntity = new Image
             {
-                AuthorId = Guid.NewGuid(),
+                AuthorId = new Guid(CurrentUserId),
                 BlogId = entity.BlogId,
                 Name = entity.Name,
                 Description = entity.Description,

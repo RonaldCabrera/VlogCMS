@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
@@ -9,7 +10,9 @@ namespace VlogCMS.Api.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class PageController(PageService pageService) : BaseController
+public class PageController(
+    PageService pageService,
+    UserManager<IdentityUser> userManager) : BaseController(userManager)
 {
     private readonly PageService _pageService = pageService;
 
