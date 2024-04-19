@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
 
 namespace VlogCMS.Api.Controllers;
 
-// TODO: Add premium role requirement
+// TODO: Get current user id
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class PageController(PageService pageService) : BaseController
@@ -38,6 +40,7 @@ public class PageController(PageService pageService) : BaseController
     }
 
     [HttpPost("Create")]
+    [Authorize(Roles = "Admin,Premium")]
     public async Task<IActionResult> Create([FromBody] Page entity)
     {
         try
@@ -52,6 +55,7 @@ public class PageController(PageService pageService) : BaseController
     }
 
     [HttpPost("Delete/{id}")]
+    [Authorize(Roles = "Admin,Premium")]
     public async Task<IActionResult> Delete(int id)
     {
         try

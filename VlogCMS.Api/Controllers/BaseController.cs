@@ -4,9 +4,6 @@ namespace VlogCMS.Api.Controllers
 {
     public class BaseController : Controller
     {
-        public BaseController()
-        {
-                
-        }
+        protected string CurrentUser => User?.Identity?.Name;
     }
 }

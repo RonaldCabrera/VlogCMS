@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace VlogCMS.Api.Data
 {
-    public class AuthDbContext : IdentityDbContext<IdentityUser>
+    public class AuthDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
         public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
         { }

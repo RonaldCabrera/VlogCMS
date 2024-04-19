@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
 
 namespace VlogCMS.Api.Controllers;
 
 // TODO: Add admin role requirement
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class StateController(StateService stateService) : BaseController
@@ -38,6 +40,7 @@ public class StateController(StateService stateService) : BaseController
     }
 
     [HttpPost("Create")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([FromBody] State entity)
     {
         try
@@ -52,6 +55,7 @@ public class StateController(StateService stateService) : BaseController
     }
 
     [HttpPost("Delete/{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         try

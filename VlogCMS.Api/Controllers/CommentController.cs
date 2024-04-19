@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
 
 namespace VlogCMS.Api.Controllers;
 
+// TODO: Get current user id
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class CommentController(CommentService commentService) : BaseController
@@ -51,7 +54,8 @@ public class CommentController(CommentService commentService) : BaseController
     }
 
     [HttpPost("Delete/{id}")]
-    public async Task<IActionResult> Create(int id)
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Delete(int id)
     {
         try
         {

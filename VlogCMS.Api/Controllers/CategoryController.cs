@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VlogCMS.Api.Constants;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
 
 namespace VlogCMS.Api.Controllers;
 
-// TODO: Add admin role requirement
 [ApiController]
 [Route("api/[controller]")]
 public class CategoryController(CategoryService categoryService) : BaseController
@@ -40,7 +38,7 @@ public class CategoryController(CategoryService categoryService) : BaseControlle
     }
 
     [HttpPost("Create")]
-    [Authorize(Roles = nameof(AuthRoles.Admin))]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([FromBody] Category entity)
     {
         try
@@ -55,7 +53,7 @@ public class CategoryController(CategoryService categoryService) : BaseControlle
     }
 
     [HttpPost("Delete/{id}")]
-    [Authorize(Roles = nameof(AuthRoles.Admin))]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         try

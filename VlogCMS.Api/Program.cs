@@ -28,6 +28,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 });
 
 builder.Services.AddIdentityCore<IdentityUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AuthDbContext>()
     .AddApiEndpoints();
 
@@ -45,6 +46,7 @@ builder.Services
 builder.Services.AddAuthorizationBuilder();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

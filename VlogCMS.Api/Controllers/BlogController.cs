@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VlogCMS.Api.Models;
 using VlogCMS.Api.Services;
 
 namespace VlogCMS.Api.Controllers;
 
-// TODO: Add premium role requirement
-// Make them likable without premium role requirement
+// TODO: Get current user id
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class BlogController(BlogService blogService) : Controller
@@ -39,6 +40,7 @@ public class BlogController(BlogService blogService) : Controller
     }
 
     [HttpPost("Create")]
+    [Authorize(Roles = "Admin,Premium")]
     public async Task<IActionResult> Create([FromBody] Blog entity)
     {
         try
@@ -53,6 +55,7 @@ public class BlogController(BlogService blogService) : Controller
     }
 
     [HttpPost("Delete/{id}")]
+    [Authorize(Roles = "Admin,Premium")]
     public async Task<IActionResult> Delete(int id)
     {
         try
